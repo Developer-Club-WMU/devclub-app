@@ -50,10 +50,8 @@ Open `.env` in your editor and fill in the required values (e.g., database URL, 
 ```bash
 flutter run
 ```
-Then select 2 for Chrome
-For Responsive UI: right click + inspect 
+Then select 2 for Chrome, for responsive UI testing do: right click + inspect
 
-Once the server is running, open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
 
 ## Branching Strategies
 
