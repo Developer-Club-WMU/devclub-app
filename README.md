@@ -17,7 +17,7 @@ Documentations: [Flutter Get Started](https://docs.flutter.dev/get-started/insta
 
 Follow these steps to download, install dependencies, and run the project locally. 
 
-### I've never set up flutter before
+### 0. "I've not set up flutter on my device before"
 Go through: [Flutter Get Started](https://docs.flutter.dev/get-started/install), and then follow the instructions below after opening a new VSCode session
 
 ### 1. Clone the Repository
@@ -29,7 +29,7 @@ cd devclub-app
 
 ### 2. Install Dependencies
 
-Make sure you have Node.js and pnpm installed. Then run:
+Again, make sure you have flutter installed, then
 
 ```bash
 flutter pub get
