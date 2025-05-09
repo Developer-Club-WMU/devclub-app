@@ -54,3 +54,9 @@ Then select 2 for Chrome
 For Responsive UI: right click + inspect 
 
 Once the server is running, open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
+
+## Branching Strategies
+
+1. main - client facing, only pull request (PR) here when finish testing and is sure it's a safe release
+2. development - this is the final product that the developers play around with until sure it can be PR to main, every time a feature is finish implemented, PR here and request a pull from everyone.
+3. feature - checkout a new branch from development formatted "feature/feature_name", then code away without fear. If multiple people is working on the same feature one for back end one for front end, make another feature layer from this one, make sure to commit frequently and alert each other to pull
