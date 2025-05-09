@@ -6,7 +6,7 @@ Techstack: [Flutter](https://flutter.dev/) and [PostgreSQL](https://www.postgres
 
 Documentations: [Flutter Get Started](https://docs.flutter.dev/get-started/install), [Postgres Flutter Package](https://pub.dev/packages/postgres)
 
-Features:
+# Features:
 - Home Page: Countdown towards next event, notification for next event, links to RSVP
 - Events: Calender of all events, allow user to connect to Google Calendar and Team's Calender
 - Developer Challenge: TBD
@@ -15,7 +15,10 @@ Features:
 
 ## Getting Started
 
-Follow these steps to download, install dependencies, and run the project locally.
+Follow these steps to download, install dependencies, and run the project locally. 
+
+### I've never set up flutter before
+Go through: [Flutter Get Started](https://docs.flutter.dev/get-started/install), and then follow the instructions below after opening a new VSCode session
 
 ### 1. Clone the Repository
 
