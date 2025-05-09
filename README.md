@@ -37,13 +37,7 @@ flutter pub get
 
 ### 3. Set Up Environment Variables
 
-Copy the example environment file and set your environment-specific variables:
-
-```bash
-cp .env.example .env
-```
-
-Open `.env` in your editor and fill in the required values (e.g., database URL, authentication secrets, etc.).
+[Follow this guide] (https://medium.com/@eng.abdalrhman33/use-environment-variables-for-flutter-apps-fd9d02289076)
 
 ### 4. Run the test environment
 
