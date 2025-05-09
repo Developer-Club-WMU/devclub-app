@@ -37,7 +37,7 @@ flutter pub get
 
 ### 3. Set Up Environment Variables
 
-[Follow this guide] (https://medium.com/@eng.abdalrhman33/use-environment-variables-for-flutter-apps-fd9d02289076)
+[Follow this guide](https://medium.com/@eng.abdalrhman33/use-environment-variables-for-flutter-apps-fd9d02289076)
 
 ### 4. Run the test environment
 
