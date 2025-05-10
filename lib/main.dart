@@ -4,7 +4,7 @@ import 'package:devclub_app/theme.dart';
 
 // Pages
 import 'package:devclub_app/home.dart';
-import 'package:devclub_app/developer_challenge.dart';
+import 'package:devclub_app/challenge.dart';
 import 'package:devclub_app/projects.dart';
 import 'package:devclub_app/resources.dart';
 import 'package:devclub_app/info.dart';
