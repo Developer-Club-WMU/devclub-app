@@ -60,7 +60,16 @@ class _MainScaffoldState extends State<MainScaffold> {
     final theme = Theme.of(context); // example usage: "theme.colorScheme.primary" (https://docs.flutter.dev/cookbook/design/themes)
 
     return Scaffold(
-      appBar: AppBar(title: const Text("My App")),
+      appBar: AppBar(
+        backgroundColor: theme.colorScheme.primary,
+        foregroundColor: theme.colorScheme.onPrimary,
+        title: const Text("Developer Club App"),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {}
+          )]
+      ),
       body: pages[currentPageIndex],
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
@@ -68,6 +77,7 @@ class _MainScaffoldState extends State<MainScaffold> {
             currentPageIndex = index;
           });
         },
+        selectedIndex: currentPageIndex,
         indicatorColor: theme.colorScheme.primary,
         destinations: const <Widget>[
           NavigationDestination(
@@ -83,7 +93,7 @@ class _MainScaffoldState extends State<MainScaffold> {
           NavigationDestination(
             icon: Icon(Icons.emoji_events_outlined),
             selectedIcon: Icon(Icons.emoji_events),
-            label: 'Developer Challenge',
+            label: 'Challenge',
           ),
            NavigationDestination(
             icon: Icon(Icons.dynamic_form_outlined),
