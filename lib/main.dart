@@ -30,11 +30,13 @@ class DevClubApp extends StatelessWidget {
   }
 }
 
-// Main App Scaffold
-// This widget serves as the main scaffold for the app, containing the navigation bar and the body which select which page 
-// To navigate from page to subpage we will instead use Navigation Stack.
+/// Main App Scaffold
+/// This widget serves as the main scaffold for the app, containing the navigation bar and the body which select which page 
+/// To navigate from page to subpage we will instead use Navigation Stack.
+// TODO: Potentially switch to a more complex navbar where each page have it's own scaffold which allow app bar to change as well as have fab when needed.
 class MainScaffold extends StatefulWidget {
   
+  // constructors
   const MainScaffold({super.key});
 
   @override
@@ -44,6 +46,7 @@ class MainScaffold extends StatefulWidget {
 
 class _MainScaffoldState extends State<MainScaffold> {
   
+  // state properties
   int currentPageIndex = 0;
 
   final List<Widget> pages = const [
@@ -57,8 +60,10 @@ class _MainScaffoldState extends State<MainScaffold> {
   @override
   Widget build(BuildContext context) {
     
+    // build method variables
     final theme = Theme.of(context); // example usage: "theme.colorScheme.primary" (https://docs.flutter.dev/cookbook/design/themes)
-
+    NavigationDestinationLabelBehavior labelBehavior = NavigationDestinationLabelBehavior.onlyShowSelected;
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: theme.colorScheme.primary,
@@ -72,7 +77,7 @@ class _MainScaffoldState extends State<MainScaffold> {
       ),
       body: pages[currentPageIndex],
       bottomNavigationBar: NavigationBar(
-        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        labelBehavior: labelBehavior,
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
@@ -81,31 +86,37 @@ class _MainScaffoldState extends State<MainScaffold> {
         selectedIndex: currentPageIndex,
         indicatorColor: theme.colorScheme.primary,
         destinations: const <Widget>[
+          
           NavigationDestination(
             icon: Icon(Icons.event_outlined),
             selectedIcon: Icon(Icons.event),
             label: 'Events',
           ),
+          
           NavigationDestination(
             icon: Icon(Icons.ballot_outlined),
             selectedIcon: Icon(Icons.ballot),
             label: 'Projects Hub',
           ),
+          
           NavigationDestination(
             icon: Icon(Icons.emoji_events_outlined),
             selectedIcon: Icon(Icons.emoji_events),
             label: 'Challenge',
           ),
-           NavigationDestination(
+          
+          NavigationDestination(
             icon: Icon(Icons.dynamic_form_outlined),
             selectedIcon: Icon(Icons.dynamic_form),
             label: 'Resources',
           ),
-            NavigationDestination(
+          
+          NavigationDestination(
             icon: Icon(Icons.info_outline),
             selectedIcon: Icon(Icons.info),
             label: 'Info',
           ),
+
         ],
     )
     );
