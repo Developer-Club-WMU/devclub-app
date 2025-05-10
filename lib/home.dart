@@ -19,6 +19,13 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             const Text(
               'Welcome to the Developer Club App!',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Text(
+              'The up coming event is coming Fall 2025...',
             ),
           ],
         ),
