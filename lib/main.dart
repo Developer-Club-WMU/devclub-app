@@ -72,6 +72,7 @@ class _MainScaffoldState extends State<MainScaffold> {
       ),
       body: pages[currentPageIndex],
       bottomNavigationBar: NavigationBar(
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
