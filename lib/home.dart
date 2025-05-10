@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:devclub_app/calendar.dart';
 class HomePage extends StatefulWidget {
 
   // widget properties - usage example: widget.title
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 10,
             ),
-            
+
             // TODO: Make reuseable widget for this button
             ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -39,7 +39,10 @@ class _HomePageState extends State<HomePage> {
               foregroundColor: Theme.of(context).colorScheme.onPrimary,
             ),
             onPressed: () {
-              // Add your button action here
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CalendarPage()),
+              );
             },
             child: const Text('All events'),
           ),

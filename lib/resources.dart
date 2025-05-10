@@ -10,6 +10,9 @@ class ResourcePage extends StatefulWidget {
 class _ResourcePageState extends State<ResourcePage> {
   @override
   Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -33,8 +36,8 @@ class _ResourcePageState extends State<ResourcePage> {
           // TODO: Make reuseable widget for this button
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              backgroundColor: theme.colorScheme.primary,
+              foregroundColor: theme.colorScheme.onPrimary,
             ),
             onPressed: () {
               // Add your button action here
@@ -42,10 +45,14 @@ class _ResourcePageState extends State<ResourcePage> {
             child: const Text('Request to use Mac Mini'),
           ),
 
+          SizedBox(
+            height: 5,
+          ),
+
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              backgroundColor: theme.colorScheme.primary,
+              foregroundColor: theme.colorScheme.onPrimary,
             ),
             onPressed: () {
               // Add your button action here
@@ -53,10 +60,15 @@ class _ResourcePageState extends State<ResourcePage> {
             child: const Text('Request to use Rack Server'),
           ),
 
+
+          SizedBox(
+            height: 5,
+          ),
+
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              backgroundColor: theme.colorScheme.primary,
+              foregroundColor: theme.colorScheme.onPrimary,
             ),
             onPressed: () {
               // Add your button action here

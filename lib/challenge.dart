@@ -10,6 +10,9 @@ class DeveloperChallengePage extends StatefulWidget {
 class _DeveloperChallengeState extends State<DeveloperChallengePage> {
   @override
   Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -33,8 +36,8 @@ class _DeveloperChallengeState extends State<DeveloperChallengePage> {
           // TODO: Make reuseable widget for this button
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              backgroundColor: theme.colorScheme.primary,
+              foregroundColor: theme.colorScheme.onPrimary,
             ),
             onPressed: () {
               // Add your button action here
