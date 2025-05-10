@@ -27,6 +27,22 @@ class _HomePageState extends State<HomePage> {
             const Text(
               'The up coming event is coming Fall 2025...',
             ),
+
+            SizedBox(
+              height: 10,
+            ),
+            
+            // TODO: Make reuseable widget for this button
+            ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+            ),
+            onPressed: () {
+              // Add your button action here
+            },
+            child: const Text('All events'),
+          ),
           ],
         ),
       );
