@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:devclub_app/ui/event/view/events_list_screen.dart';
-class HomePage extends StatefulWidget {
+class EventsScreen extends StatefulWidget {
 
   // widget properties - usage example: widget.title
-  const HomePage({super.key});
+  const EventsScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<EventsScreen> createState() => _EventsScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _EventsScreenState extends State<EventsScreen> {
   
   @override
   Widget build(BuildContext context) {    
