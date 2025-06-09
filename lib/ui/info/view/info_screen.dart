@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class InfoPage extends StatefulWidget {
-  const InfoPage({super.key});
+class InfoScreen extends StatefulWidget {
+  const InfoScreen({super.key});
 
   @override
-  State<InfoPage> createState() => _InfoPageState();
+  State<InfoScreen> createState() => _InfoScreenState();
 }
 
-class _InfoPageState extends State<InfoPage> {
+class _InfoScreenState extends State<InfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
