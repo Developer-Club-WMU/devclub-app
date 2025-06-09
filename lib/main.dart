@@ -1,13 +1,7 @@
-// Material Library and Theme
+// Material Library, Router and Theme
+import 'package:devclub_app/router.dart';
 import 'package:flutter/material.dart';
 import 'package:devclub_app/ui/core/theme.dart';
-
-// Pages
-import 'package:devclub_app/ui/event/view/events_screen.dart';
-import 'package:devclub_app/ui/challenge/view/challenge_screen.dart';
-import 'package:devclub_app/ui/project/view/projects_screen.dart';
-import 'package:devclub_app/ui/resources/view/resources_screen.dart';
-import 'package:devclub_app/ui/info/view/info_screen.dart';
 
 // Main function
 void main() {
@@ -20,105 +14,12 @@ class DevClubApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Developer Club App',
       theme: AppTheme.light, // form 'theme.dart'
       darkTheme: AppTheme.dark, // from 'theme.dart'
       themeMode: ThemeMode.system, // Use the OS current theme mode
-      home: const MainScaffold(),
-    );
-  }
-}
-
-/// Main App Scaffold
-/// This widget serves as the main scaffold for the app, containing the navigation bar and the body which select which page 
-/// To navigate from page to subpage we will instead use Navigation Stack.
-// TODO: Potentially switch to a more complex navbar where each page have it's own scaffold which allow app bar to change as well as have fab when needed.
-class MainScaffold extends StatefulWidget {
-  
-  // constructors
-  const MainScaffold({super.key});
-
-  @override
-  State<MainScaffold> createState() => _MainScaffoldState();
-
-}
-
-class _MainScaffoldState extends State<MainScaffold> {
-  
-  // state properties
-  int currentPageIndex = 0;
-
-  final List<Widget> pages = const [
-    HomePage(),
-    ProjectPage(),
-    ChallengesScreen(),
-    ResourcePage(),
-    InfoPage(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    
-    // build method variables
-    final theme = Theme.of(context); // example usage: "theme.colorScheme.primary" (https://docs.flutter.dev/cookbook/design/themes)
-    NavigationDestinationLabelBehavior labelBehavior = NavigationDestinationLabelBehavior.onlyShowSelected;
-    
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: theme.colorScheme.primary,
-        foregroundColor: theme.colorScheme.onPrimary,
-        title: const Text("Developer Club App"),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {}
-          )]
-      ),
-      body: pages[currentPageIndex],
-      bottomNavigationBar: NavigationBar(
-        labelBehavior: labelBehavior,
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPageIndex = index;
-          });
-        },
-        selectedIndex: currentPageIndex,
-        indicatorColor: theme.colorScheme.primary,
-        destinations: const <Widget>[
-          
-          NavigationDestination(
-            icon: Icon(Icons.event_outlined),
-            selectedIcon: Icon(Icons.event),
-            label: 'Events',
-          ),
-          
-          NavigationDestination(
-            icon: Icon(Icons.ballot_outlined),
-            selectedIcon: Icon(Icons.ballot),
-            label: 'Projects Hub',
-          ),
-          
-          NavigationDestination(
-            icon: Icon(Icons.emoji_events_outlined),
-            selectedIcon: Icon(Icons.emoji_events),
-            label: 'Challenge',
-          ),
-          
-          NavigationDestination(
-            icon: Icon(Icons.dynamic_form_outlined),
-            selectedIcon: Icon(Icons.dynamic_form),
-            label: 'Resources',
-          ),
-          
-          NavigationDestination(
-            icon: Icon(Icons.info_outline),
-            selectedIcon: Icon(Icons.info),
-            label: 'Info',
-          ),
-
-        ],
-    )
+      routerConfig: router,
     );
   }
 }
