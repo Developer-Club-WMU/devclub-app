@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DeveloperChallengePage extends StatefulWidget {
-  const DeveloperChallengePage({super.key});
+class ChallengesScreen extends StatefulWidget {
+  const ChallengesScreen({super.key});
 
   @override
-  State<DeveloperChallengePage> createState() => _DeveloperChallengeState();
+  State<ChallengesScreen> createState() => _ChallengesScreenState();
 }
 
-class _DeveloperChallengeState extends State<DeveloperChallengePage> {
+class _ChallengesScreenState extends State<ChallengesScreen> {
   @override
   Widget build(BuildContext context) {
 

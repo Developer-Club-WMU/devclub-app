@@ -1,13 +1,13 @@
 // Material Library and Theme
 import 'package:flutter/material.dart';
-import 'package:devclub_app/theme.dart';
+import 'package:devclub_app/ui/core/theme.dart';
 
 // Pages
-import 'package:devclub_app/home.dart';
-import 'package:devclub_app/challenge.dart';
-import 'package:devclub_app/projects.dart';
-import 'package:devclub_app/resources.dart';
-import 'package:devclub_app/info.dart';
+import 'package:devclub_app/ui/event/view/events_screen.dart';
+import 'package:devclub_app/ui/challenge/view/challenge_screen.dart';
+import 'package:devclub_app/ui/project/view/projects_screen.dart';
+import 'package:devclub_app/ui/resources/view/resources_screen.dart';
+import 'package:devclub_app/ui/info/view/info_screen.dart';
 
 // Main function
 void main() {
@@ -52,7 +52,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   final List<Widget> pages = const [
     HomePage(),
     ProjectPage(),
-    DeveloperChallengePage(),
+    ChallengesScreen(),
     ResourcePage(),
     InfoPage(),
   ];

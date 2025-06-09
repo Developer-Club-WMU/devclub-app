@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:devclub_app/calendar.dart';
+import 'package:devclub_app/ui/event/view/events_list_screen.dart';
 class HomePage extends StatefulWidget {
 
   // widget properties - usage example: widget.title
@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Welcome to the Developer Club App!',
+              'Welcome to the Developer Club!',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
