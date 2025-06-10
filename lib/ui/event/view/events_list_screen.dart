@@ -19,7 +19,7 @@ class _EventsListScreenState extends State<EventsListScreen> {
       appBar: AppBar(
         title: const Text('Event Lists Page'),
         leading: BackButton(
-          onPressed: () => context.go('/events'),
+          onPressed: () => context.go('/'),
         ),
         backgroundColor: theme.colorScheme.primary,
       ),

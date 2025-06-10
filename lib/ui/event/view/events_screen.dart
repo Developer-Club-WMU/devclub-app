@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 class EventsScreen extends StatefulWidget {
-
+  
   // widget properties - usage example: widget.title
   const EventsScreen({super.key});
 
@@ -10,36 +10,66 @@ class EventsScreen extends StatefulWidget {
 }
 
 class _EventsScreenState extends State<EventsScreen> {
-
   @override
   Widget build(BuildContext context) {
+
+    // build method variables
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     final theme = Theme.of(context);
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        const Text(
-          'Events Page',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+
+    return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
+      slivers: <Widget>[
+        // Container 1
+        SliverToBoxAdapter(
+          child: Container(
+            width: screenWidth,
+            height: screenHeight,
+            color: theme.colorScheme.primary,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                  Center(child: Text("Page 1")),
+                  ElevatedButton(
+                    onPressed: () => context.push('/events_list'),
+                    child: const Text('Go to Events List'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+        // Container 2
+        SliverToBoxAdapter(
+            child: Container(
+              width: screenWidth,
+              height: screenHeight,
+              color: theme.colorScheme.secondary,
+              child: Center(child: Text("Page 2")),
+            ),
+          ),
+
+        // Container 3
+        SliverToBoxAdapter(
+          child: Container(
+            width: screenWidth,
+            height: screenHeight,
+            color: theme.colorScheme.primary,
+            child: Center(child: Text("Page 3")),
           ),
         ),
-    
-        SizedBox(
-          height: 10,
+
+        // Container 4
+        SliverToBoxAdapter(
+          child: Container(
+            width: screenWidth,
+            height: screenHeight,
+            color: theme.colorScheme.secondary,
+            child: Center(child: Text("Page 4")),
+          ),
         ),
-    
-        // TODO: Make reuseable widget for this button
-        ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: theme.colorScheme.primary,
-          foregroundColor: theme.colorScheme.onPrimary,
-        ),
-        onPressed: () {
-          context.push('/event_list');
-        },
-        child: const Text('View Events List'),
-      ),
       ],
     );
   }

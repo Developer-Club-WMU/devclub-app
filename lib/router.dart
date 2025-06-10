@@ -81,8 +81,8 @@ final router = GoRouter(
 class AppRoutes {
   AppRoutes._();
 
-  static const String events = '/events';
-  static const String eventsList = '/event_list';
+  static const String events = '/';
+  static const String eventsList = '/events_list';
   static const String eventDetails = '/event_details';
   static const String projects = '/projects';
   static const String challenges = '/challenges';
