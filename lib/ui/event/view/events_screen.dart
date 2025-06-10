@@ -1,15 +1,17 @@
+import 'package:devclub_app/ui/auth/view_model/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-class EventsScreen extends StatefulWidget {
+class EventsScreen extends ConsumerStatefulWidget {
   
   // widget properties - usage example: widget.title
   const EventsScreen({super.key});
 
   @override
-  State<EventsScreen> createState() => _EventsScreenState();
+  ConsumerState<EventsScreen> createState() => _EventsScreenState();
 }
 
-class _EventsScreenState extends State<EventsScreen> {
+class _EventsScreenState extends ConsumerState<EventsScreen> {
   @override
   Widget build(BuildContext context) {
 
@@ -35,9 +37,18 @@ class _EventsScreenState extends State<EventsScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                   Center(child: Text("Upcoming Workshop")),
+
                   ElevatedButton(
                     onPressed: () => context.push('/events_list'),
                     child: const Text('Go to Events List'),
+                  ),
+
+                  // TODO: Design where the sign up button will be and get rid of this button
+                  ElevatedButton(
+                    onPressed: () async {
+                      await ref.read(authControllerProvider.notifier).signOut();
+                    },
+                    child: const Text('Sign Out'),
                   ),
                 ],
               ),
