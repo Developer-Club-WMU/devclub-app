@@ -21,7 +21,8 @@ class _EventsScreenState extends State<EventsScreen> {
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: <Widget>[
-        // Container 1
+        
+        // Upcoming Workshop Section
         SliverToBoxAdapter(
           child: Container(
             width: screenWidth,
@@ -31,7 +32,7 @@ class _EventsScreenState extends State<EventsScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                  Center(child: Text("Page 1")),
+                  Center(child: Text("Upcoming Workshop")),
                   ElevatedButton(
                     onPressed: () => context.push('/events_list'),
                     child: const Text('Go to Events List'),
@@ -41,33 +42,33 @@ class _EventsScreenState extends State<EventsScreen> {
             ),
           ),
 
-        // Container 2
+        // Upcoming Speaker Event Section
         SliverToBoxAdapter(
             child: Container(
               width: screenWidth,
               height: screenHeight,
               color: theme.colorScheme.secondary,
-              child: Center(child: Text("Page 2")),
+              child: Center(child: Text("Upcoming Speaker Event")),
             ),
           ),
 
-        // Container 3
+        // Upcoming Hackathon Section
         SliverToBoxAdapter(
           child: Container(
             width: screenWidth,
             height: screenHeight,
             color: theme.colorScheme.primary,
-            child: Center(child: Text("Page 3")),
+            child: Center(child: Text("Upcoming Hackathon")),
           ),
         ),
 
-        // Container 4
+        // Upcoming Community Meeting Section
         SliverToBoxAdapter(
           child: Container(
             width: screenWidth,
             height: screenHeight,
             color: theme.colorScheme.secondary,
-            child: Center(child: Text("Page 4")),
+            child: Center(child: Text("Upcoming Community Meeting")),
           ),
         ),
       ],
