@@ -13,39 +13,18 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
 
     final theme = Theme.of(context);
 
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text(
-            'Developer Challenge Page',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+    return PageView.builder(
+      itemCount: 3,
+      physics: const ClampingScrollPhysics(),
+      controller: PageController(viewportFraction: 1),
+      itemBuilder: (context, index) {
+        return Container(
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          color: theme.colorScheme.primary,
+          child: Center(child: Text("Page $index")),
+        );
+    },
+  );
 
-          const Text(
-            'This is the developer challenge page.',
-          ),
-
-          SizedBox(
-            height: 10,
-          ),
-
-          // TODO: Make reuseable widget for this button
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: theme.colorScheme.primary,
-              foregroundColor: theme.colorScheme.onPrimary,
-            ),
-            onPressed: () {
-              // Add your button action here
-            },
-            child: const Text('Request to take a client\'s request'),
-          ),
-        ],
-      ),
-    );
   }
 }
