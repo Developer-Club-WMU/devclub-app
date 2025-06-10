@@ -18,11 +18,13 @@ class _EventsScreenState extends State<EventsScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     final theme = Theme.of(context);
 
+    // Use CustomScrollView to create a scrollable layout with slivers, potentially adding appbar
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: <Widget>[
         
         // Upcoming Workshop Section
+        // TODO: Replace with actual workshop data and UI
         SliverToBoxAdapter(
           child: Container(
             width: screenWidth,
@@ -43,6 +45,7 @@ class _EventsScreenState extends State<EventsScreen> {
           ),
 
         // Upcoming Speaker Event Section
+        // TODO: Replace with actual speaker event data and UI
         SliverToBoxAdapter(
             child: Container(
               width: screenWidth,
@@ -53,6 +56,7 @@ class _EventsScreenState extends State<EventsScreen> {
           ),
 
         // Upcoming Hackathon Section
+        // TODO: Replace with actual hackathon data and UI
         SliverToBoxAdapter(
           child: Container(
             width: screenWidth,
@@ -63,6 +67,7 @@ class _EventsScreenState extends State<EventsScreen> {
         ),
 
         // Upcoming Community Meeting Section
+        // TODO: Replace with actual community meeting data and UI
         SliverToBoxAdapter(
           child: Container(
             width: screenWidth,
