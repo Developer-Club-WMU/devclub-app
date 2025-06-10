@@ -28,7 +28,6 @@ class _InfoScreenState extends State<InfoScreen> {
             floating: false,
             pinned: false,
             snap: false,
-            expandedHeight: 100.0,
           ),
 
           SliverMasonryGrid.count(
