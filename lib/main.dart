@@ -1,10 +1,16 @@
 // Material Library, Router and Theme
 import 'package:devclub_app/router.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:devclub_app/ui/core/themes/theme.dart';
+import 'firebase_options.dart';
 
 // Main function
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const DevClubApp());
 }
 
