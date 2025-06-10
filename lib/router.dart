@@ -115,71 +115,87 @@ class _AppViewState extends State<AppView> {
     
     return Scaffold(
 
-      body: widget.navigationShell,
-      bottomNavigationBar: NavigationBar(
-        labelBehavior: labelBehavior,
-        selectedIndex: widget.navigationShell.currentIndex,
-        onDestinationSelected: widget.navigationShell.goBranch,
-        indicatorColor: theme.colorScheme.primary,
-        destinations: [
-          
-          NavigationDestination(
-            icon: Icon(
-              Icons.event_outlined,
-              color: widget.navigationShell.currentIndex == 0
-                ? theme.colorScheme.primary
-                : theme.colorScheme.tertiary,
+      body: Stack(
+        children: [
+          widget.navigationShell,
+          Positioned(
+            left: 16,
+            right: 16,
+            bottom: 20,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Material(
+                elevation: 10,
+                color: Colors.white,
+                child: NavigationBar(
+                  labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+                  selectedIndex: widget.navigationShell.currentIndex,
+                  onDestinationSelected: widget.navigationShell.goBranch,
+                  indicatorColor: theme.colorScheme.primary,
+                  destinations: [
+                    
+                    NavigationDestination(
+                      icon: Icon(
+                        Icons.event_outlined,
+                        color: widget.navigationShell.currentIndex == 0
+                          ? theme.colorScheme.primary
+                          : theme.colorScheme.tertiary,
+                        ),
+                      selectedIcon: Icon(Icons.event),
+                      label: 'Events',
+                    ),
+                
+                    NavigationDestination(
+                      icon: Icon(
+                        Icons.ballot_outlined,
+                        color: widget.navigationShell.currentIndex == 1
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.tertiary,
+                      ),
+                      selectedIcon: Icon(Icons.ballot),
+                      label: 'Projects Hub',
+                    ),
+                
+                    NavigationDestination(
+                      icon: Icon(
+                        Icons.emoji_events_outlined,
+                        color: widget.navigationShell.currentIndex == 2
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.tertiary,
+                      ),
+                      selectedIcon: Icon(Icons.emoji_events),
+                      label: 'Challenge',
+                    ),
+                
+                    NavigationDestination(
+                      icon: Icon(
+                        Icons.dynamic_form_outlined,
+                        color: widget.navigationShell.currentIndex == 3
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.tertiary,
+                      ),
+                      selectedIcon: Icon(Icons.dynamic_form),
+                      label: 'Resources',
+                    ),
+                
+                    NavigationDestination(
+                      icon: Icon(
+                        Icons.info_outline,
+                        color: widget.navigationShell.currentIndex == 4
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.tertiary,
+                      ),
+                      selectedIcon: Icon(Icons.info),
+                      label: 'Info',
+                    ),
+                
+                  ],
+                    ),
               ),
-            selectedIcon: Icon(Icons.event),
-            label: 'Events',
-          ),
-
-          NavigationDestination(
-            icon: Icon(
-              Icons.ballot_outlined,
-              color: widget.navigationShell.currentIndex == 1
-                  ? theme.colorScheme.primary
-                  : theme.colorScheme.tertiary,
             ),
-            selectedIcon: Icon(Icons.ballot),
-            label: 'Projects Hub',
-          ),
-
-          NavigationDestination(
-            icon: Icon(
-              Icons.emoji_events_outlined,
-              color: widget.navigationShell.currentIndex == 2
-                  ? theme.colorScheme.primary
-                  : theme.colorScheme.tertiary,
-            ),
-            selectedIcon: Icon(Icons.emoji_events),
-            label: 'Challenge',
-          ),
-
-          NavigationDestination(
-            icon: Icon(
-              Icons.dynamic_form_outlined,
-              color: widget.navigationShell.currentIndex == 3
-                  ? theme.colorScheme.primary
-                  : theme.colorScheme.tertiary,
-            ),
-            selectedIcon: Icon(Icons.dynamic_form),
-            label: 'Resources',
-          ),
-
-          NavigationDestination(
-            icon: Icon(
-              Icons.info_outline,
-              color: widget.navigationShell.currentIndex == 4
-                  ? theme.colorScheme.primary
-                  : theme.colorScheme.tertiary,
-            ),
-            selectedIcon: Icon(Icons.info),
-            label: 'Info',
-          ),
-
+          )
         ],
-    )
+      ),
     );
   }
 }
