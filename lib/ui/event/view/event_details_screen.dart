@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:devclub_app/ui/event/view/events_list_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class EventDetailsScreen extends StatefulWidget {
 
@@ -13,42 +13,45 @@ class EventDetailsScreen extends StatefulWidget {
 class _EventDetailsScreenState extends State<EventDetailsScreen> {
   
   @override
-  Widget build(BuildContext context) {    
-    return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Welcome to the Developer Club!',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const Text(
-              'The up coming event is coming Fall 2025...',
-            ),
+  Widget build(BuildContext context) { 
 
-            SizedBox(
-              height: 10,
-            ),
+    final theme = Theme.of(context);
 
-            // TODO: Make reuseable widget for this button
-            ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const CalendarPage()),
-              );
-            },
-            child: const Text('Events Details Screen'),
-          ),
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: theme.colorScheme.primary,
+        foregroundColor: theme.colorScheme.onPrimary,
+        title: const Text("Event Details"),
+        leading: BackButton(
+          onPressed: () => context.pop(), // Use pop to go back to the previous screen (e.g., EventsListScreen or EventsScreen)
         ),
-      );
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              context.push('/settings');
+            }
+          )
+        ],
+      ),
+      body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'Event Details Page',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+      
+              SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
+        ),
+    );
   }
 }

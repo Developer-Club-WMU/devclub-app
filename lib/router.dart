@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:devclub_app/ui/event/view/events_screen.dart';
+import 'package:devclub_app/ui/event/view/events_list_screen.dart';
+import 'package:devclub_app/ui/event/view/event_details_screen.dart';
 import 'package:devclub_app/ui/project/view/projects_screen.dart';
 import 'package:devclub_app/ui/challenge/view/challenge_screen.dart';
 import 'package:devclub_app/ui/resources/view/resources_screen.dart';
@@ -14,15 +16,28 @@ final router = GoRouter(
   routes: [
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
-        return MainScaffold(navigationShell: navigationShell);
+        return AppView(navigationShell: navigationShell);
       },
 
+      // Each branch represents a tab in the bottom navigation bar.
       branches: [
         StatefulShellBranch(
           routes: [
             GoRoute(
               path: AppRoutes.events,
               builder: (context, state) => const EventsScreen(),
+              
+              // Each routes represents a sub screens
+              routes: [
+                GoRoute(
+                  path: AppRoutes.eventsList,
+                  builder: (context, state) => const EventsListScreen(),
+                ),
+                GoRoute(
+                  path: AppRoutes.eventDetails,
+                  builder: (context, state) => const EventDetailsScreen(),
+                )
+              ]
             )
           ]
         ),
@@ -66,28 +81,30 @@ final router = GoRouter(
 class AppRoutes {
   AppRoutes._();
 
-  static const String events = '/';
+  static const String events = '/events';
+  static const String eventsList = '/event_list';
+  static const String eventDetails = '/event_details';
   static const String projects = '/projects';
   static const String challenges = '/challenges';
   static const String resources = '/resources';
   static const String info = '/info';
 }
 
-class MainScaffold extends StatefulWidget {
+class AppView extends StatefulWidget {
   
   final StatefulNavigationShell navigationShell;
 
   // constructors
-  const MainScaffold({super.key, required this.navigationShell});
+  const AppView({super.key, required this.navigationShell});
 
   @override
-  State<MainScaffold> createState() => _MainScaffoldState();
+  State<AppView> createState() => _AppViewState();
 
 }
 
 /// This widget serves as the main scaffold for the app, containing the navigation bar and the body which select which page 
 /// To navigate from page to subpage we will instead use Navigation Stack.
-class _MainScaffoldState extends State<MainScaffold> {
+class _AppViewState extends State<AppView> {
 
   @override
   Widget build(BuildContext context) {
@@ -97,16 +114,7 @@ class _MainScaffoldState extends State<MainScaffold> {
     NavigationDestinationLabelBehavior labelBehavior = NavigationDestinationLabelBehavior.onlyShowSelected;
     
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: theme.colorScheme.primary,
-        foregroundColor: theme.colorScheme.onPrimary,
-        title: const Text("Developer Club App"),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {}
-          )]
-      ),
+
       body: widget.navigationShell,
       bottomNavigationBar: NavigationBar(
         labelBehavior: labelBehavior,
