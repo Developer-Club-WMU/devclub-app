@@ -1,7 +1,7 @@
 // Material Library, Router and Theme
 import 'package:devclub_app/router.dart';
 import 'package:flutter/material.dart';
-import 'package:devclub_app/ui/core/theme.dart';
+import 'package:devclub_app/ui/core/themes/theme.dart';
 
 // Main function
 void main() {
