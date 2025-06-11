@@ -1,139 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:devclub_app/ui/event/view/events_screen.dart';
-import 'package:devclub_app/ui/event/view/events_list_screen.dart';
-import 'package:devclub_app/ui/event/view/event_details_screen.dart';
-import 'package:devclub_app/ui/project/view/projects_screen.dart';
-import 'package:devclub_app/ui/challenge/view/challenge_screen.dart';
-import 'package:devclub_app/ui/resources/view/resources_screen.dart';
-import 'package:devclub_app/ui/info/view/info_screen.dart';
 
-final _routerKey = GlobalKey<NavigatorState>();
 
-final router = GoRouter(
-  navigatorKey: _routerKey,
-  initialLocation: AppRoutes.events,
-  routes: [
-    StatefulShellRoute.indexedStack(
-      builder: (context, state, navigationShell) {
-        return AppView(navigationShell: navigationShell);
-      },
-
-      // Each branch represents a tab in the bottom navigation bar.
-      branches: [
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: AppRoutes.events,
-              builder: (context, state) => const EventsScreen(),
-              
-              // Each routes represents a sub screens
-              routes: [
-                GoRoute(
-                  path: AppRoutes.eventsList,
-                  builder: (context, state) => const EventsListScreen(),
-                ),
-                GoRoute(
-                  path: AppRoutes.eventDetails,
-                  builder: (context, state) => const EventDetailsScreen(),
-                )
-              ]
-            )
-          ]
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: AppRoutes.projects,
-              builder: (context, state) => const ProjectScreen(),
-            )
-          ]
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: AppRoutes.challenges,
-              builder: (context, state) => const ChallengesScreen(),
-            )
-          ]
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: AppRoutes.resources,
-              builder: (context, state) => const ResourcesScreen(),
-            )
-          ]
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: AppRoutes.info,
-              builder: (context, state) => const InfoScreen(),
-            )
-          ]
-        )
-      ]
-    )
-  ]
-);
-
-class AppRoutes {
-  AppRoutes._();
-
-  static const String events = '/';
-  static const String eventsList = '/events_list';
-  static const String eventDetails = '/event_details';
-  static const String projects = '/projects';
-  static const String challenges = '/challenges';
-  static const String resources = '/resources';
-  static const String info = '/info';
-}
-
-class AppView extends StatefulWidget {
+/// This is where the main body of the app, the navbar and redirect to log in lives
+class AppView extends ConsumerStatefulWidget {
   
   final StatefulNavigationShell navigationShell;
 
-  // constructors
+  // Constructor
   const AppView({super.key, required this.navigationShell});
 
   @override
-  State<AppView> createState() => _AppViewState();
+  ConsumerState<AppView> createState() => _AppViewState();
 
 }
 
 /// This widget serves as the main scaffold for the app, containing the navigation bar and the body which select which page 
 /// To navigate from page to subpage we will instead use Navigation Stack.
-class _AppViewState extends State<AppView> {
+class _AppViewState extends ConsumerState<AppView> {
 
   @override
   Widget build(BuildContext context) {
     
     // build method variables
     final theme = Theme.of(context); // example usage: "theme.colorScheme.primary" (https://docs.flutter.dev/cookbook/design/themes)
-    NavigationDestinationLabelBehavior labelBehavior = NavigationDestinationLabelBehavior.onlyShowSelected;
     
     return Scaffold(
 
       body: Stack(
         children: [
+
+          // This is the main body of the app, which will change to the screen selected on the floating nav bar
           widget.navigationShell,
+          
+          // This is the Floating Navbar that will be at the bottom of all the main screens
+          // Positioned the navbar off the bottom and inside the scaffold
           Positioned(
             left: 16,
             right: 16,
             bottom: 20,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(50), // Rounded corners for the navigation bar
               child: Material(
-                elevation: 10,
-                color: Colors.white,
+                elevation: 10, // Apply a shadow effect
+                color: Colors.white, // TODO: Decide on the background color of the navbar
                 child: NavigationBar(
-                  labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+                  labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected, // Show label only when selected
                   selectedIndex: widget.navigationShell.currentIndex,
-                  onDestinationSelected: widget.navigationShell.goBranch,
-                  indicatorColor: theme.colorScheme.primary,
+                  onDestinationSelected: widget.navigationShell.goBranch, 
+                  indicatorColor: theme.colorScheme.primary, // Color of the navbar button when an option is selected
                   destinations: [
                     
+                    // Events Tab
                     NavigationDestination(
                       icon: Icon(
                         Icons.event_outlined,
@@ -145,6 +64,7 @@ class _AppViewState extends State<AppView> {
                       label: 'Events',
                     ),
                 
+                    // Projects Tab
                     NavigationDestination(
                       icon: Icon(
                         Icons.ballot_outlined,
@@ -156,6 +76,7 @@ class _AppViewState extends State<AppView> {
                       label: 'Projects Hub',
                     ),
                 
+                    // Challenges Tab
                     NavigationDestination(
                       icon: Icon(
                         Icons.emoji_events_outlined,
@@ -167,6 +88,7 @@ class _AppViewState extends State<AppView> {
                       label: 'Challenge',
                     ),
                 
+                    // Resources Tab
                     NavigationDestination(
                       icon: Icon(
                         Icons.dynamic_form_outlined,
@@ -178,6 +100,7 @@ class _AppViewState extends State<AppView> {
                       label: 'Resources',
                     ),
                 
+                    // Info Tab
                     NavigationDestination(
                       icon: Icon(
                         Icons.info_outline,
@@ -190,7 +113,7 @@ class _AppViewState extends State<AppView> {
                     ),
                 
                   ],
-                    ),
+                ),
               ),
             ),
           )
