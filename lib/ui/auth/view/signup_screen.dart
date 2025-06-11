@@ -1,23 +1,30 @@
+import 'package:devclub_app/ui/auth/view_model/auth_controller.dart';
+import 'package:devclub_app/route/view_model/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-class SignUpScreen extends StatefulWidget {
+
+// TODO: Update design through flutterflow planning and then implement here
+/// This is the screen that use be seein when they need to create an account, it's currently a poorly designed one
+class SignUpScreen extends ConsumerStatefulWidget  {
   const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  ConsumerState<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
   // State properties
-  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
   // Dispose method to clean up controllers
   @override
   void dispose() {
-    _usernameController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
@@ -68,9 +75,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(height: 26),
 
               TextField(
-                controller: _usernameController,
+                controller: _emailController,
                 decoration: InputDecoration(
-                  labelText: 'Username',
+                  labelText: 'Email Address',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -83,7 +90,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   labelText: 'Password',
                   border: OutlineInputBorder(),
                 ),
-                obscureText: true,
+                obscureText: true, // Hide password input, best practice for security
               ),
 
               SizedBox(height: 16),
@@ -105,9 +112,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 49,
                 child: ElevatedButton(
                   
-                  onPressed: () {
-                    // TODO: Handle login
-                  },
+                  onPressed: _signUp,
 
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.colorScheme.primary,
@@ -117,7 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
 
                   child: Text(
-                    'Login',
+                    'Sign Up',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -130,31 +135,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               
               SizedBox(height: 26),
 
-              Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      // TODO: Navigate to Forgot Password screen
-                    },
-                    child: Text(
-                      'Forgot Password?',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-              ),
-
-              SizedBox(height: 10),
 
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    // TODO: Navigate to Sign Up screen
+                    context.goNamed(AppRoutes.signUp.name);
                   },
                   child: Text(
-                    "Don't have an account? Sign Up",
+                    "Already Have an Account? Log In",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Poppins',
@@ -171,4 +159,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+
+  /// Log in helper method calling the auth controller, put at the bottom of page to keep the build method clean
+  Future<void> _signUp() async {
+    
+    // Match password and confirm password
+    final password = _passwordController.text.trim();
+    final confirmPassword = _confirmPasswordController.text.trim();
+
+    if (password != confirmPassword) {
+      // Show error to user
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Passwords do not match")),
+      );
+
+      return;
+    }
+
+
+    final auth = ref.read(authControllerProvider.notifier);
+    
+    await auth.createUserWithEmailAndPassword(
+      _emailController.text.trim(),
+      _passwordController.text.trim(),
+    );
+
+  }
+  
 }

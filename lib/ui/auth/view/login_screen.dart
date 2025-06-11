@@ -1,28 +1,83 @@
+import 'package:devclub_app/ui/auth/view_model/auth_controller.dart';
+import 'package:devclub_app/route/view_model/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-class LoginScreen extends StatefulWidget {
+
+// TODO: Update design with FlutterFlow and Implement here
+/// This is the screen that the user will see when they need to type in their credentials before seeing their data
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   // State properties
-  final _usernameController = TextEditingController();
+  BuildContext? _progressIndicatorContext;
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   // Dispose method to clean up controllers
   @override
   void dispose() {
-    _usernameController.dispose();
+    
+    _emailController.dispose();
     _passwordController.dispose();
+    
+    // Close loading dialog when closing page
+    if (_progressIndicatorContext != null && _progressIndicatorContext!.mounted) {
+      Navigator.of(_progressIndicatorContext!).pop();
+      _progressIndicatorContext = null;
+    }
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    
+    // Listen to the auth controller state changes
+    ref.listen(authControllerProvider, (prev, state) async {
+      
+      // Show circular progress indicator when loading
+      if (state.isLoading) {
+        await showDialog(
+          context: context,
+          builder: (ctx) {
+            _progressIndicatorContext = ctx;
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+        );
+        return;
+      }
+
+      // Close circular progress indicator after rebuild to guarantee that the context is still valid
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        if (_progressIndicatorContext != null && _progressIndicatorContext!.mounted) {
+          
+          Navigator.of(_progressIndicatorContext!).pop();
+          _progressIndicatorContext = null;
+        
+        }
+      });
+
+      // If loading state has error, show a snackbar with the error message
+      if (state.hasError) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            behavior: SnackBarBehavior.floating,
+            content: Text('Error: ${state.error}'),
+          ),
+        );
+      }
+
+    });
 
     final theme = Theme.of(context);
 
@@ -66,9 +121,9 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 26),
 
               TextField(
-                controller: _usernameController,
+                controller: _emailController,
                 decoration: InputDecoration(
-                  labelText: 'Username',
+                  labelText: 'Email Address',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -81,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   labelText: 'Password',
                   border: OutlineInputBorder(),
                 ),
-                obscureText: true,
+                obscureText: true, // Hide password input, best practice for security
               ),
 
               SizedBox(height: 26),
@@ -92,9 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 49,
                 child: ElevatedButton(
                   
-                  onPressed: () {
-                    // TODO: Handle login
-                  },
+                  onPressed: _logIn,
 
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.colorScheme.primary,
@@ -120,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Center(
                   child: GestureDetector(
                     onTap: () {
-                      // TODO: Navigate to Forgot Password screen
+                      // TODO: Implement Forgot Password OTP
                     },
                     child: Text(
                       'Forgot Password?',
@@ -138,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    // TODO: Navigate to Sign Up screen
+                    context.goNamed(AppRoutes.signUp.name);
                   },
                   child: Text(
                     "Don't have an account? Sign Up",
@@ -158,4 +211,17 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+  /// Log in helper method calling the auth controller, put at the bottom of page to keep the build method clean
+  Future<void> _logIn() async {
+    
+    final auth = ref.read(authControllerProvider.notifier);
+    
+    await auth.signInUserWithEmailAndPassword(
+      _emailController.text.trim(),
+      _passwordController.text.trim(),
+    );
+
+  }
+  
 }
