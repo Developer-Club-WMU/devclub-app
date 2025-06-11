@@ -1,6 +1,7 @@
 
 import 'package:devclub_app/ui/auth/view_model/auth_loading_state.dart';
 import 'package:devclub_app/ui/auth/view_model/auth_providers.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_controller.g.dart';
@@ -48,10 +49,13 @@ class AuthController extends _$AuthController {
           await authRepository.createUserWithEmailAndPassword(email: email, password: password);        
           state = const AuthLoadingState(LoadingStateEnum.success, null);
         
+        } on FirebaseAuthException catch (e) {
+
+            state = AuthLoadingState(LoadingStateEnum.error, Exception(_mapFirebaseError(e)));
+
         } on Exception catch (e) {
 
             state = AuthLoadingState(LoadingStateEnum.error, e);
-
         }
     }
 
@@ -72,5 +76,20 @@ class AuthController extends _$AuthController {
           print('Error: $e');
         }
     }
-
+    
+    // Helper Method for less verbose error message, security best practice
+      _mapFirebaseError(FirebaseAuthException e) {
+        switch (e.code) {
+          case 'user-not-found':
+            return "Invalid username or password";
+          case 'wrong-password':
+            return "Invalid username or password";
+          case 'invalid-email':
+            return "Please enter a valid email address.";
+          case 'network-request-failed':
+            return "Network error. Please check your connection.";
+          default:
+            return "Authentication failed. Please try again.";
+        }
+      }
 }
