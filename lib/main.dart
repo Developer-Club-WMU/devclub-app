@@ -1,112 +1,37 @@
-// Material Library and Theme
+// Material Library, Router and Theme
+import 'package:devclub_app/route/view_model/router.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:devclub_app/theme.dart';
-
-// Pages
-import 'package:devclub_app/home.dart';
-import 'package:devclub_app/challenge.dart';
-import 'package:devclub_app/projects.dart';
-import 'package:devclub_app/resources.dart';
-import 'package:devclub_app/info.dart';
+import 'package:devclub_app/ui/core/themes/theme.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'firebase_options.dart';
 
 // Main function
-void main() {
-  runApp(const DevClubApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(
+    const ProviderScope(child: DevClubApp())
+    );
 }
 
 // Main App Widget
-class DevClubApp extends StatelessWidget {
+class DevClubApp extends ConsumerWidget  {
   const DevClubApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final GoRouter router = ref.watch(routerProvider);
+
+    return MaterialApp.router(
       title: 'Developer Club App',
       theme: AppTheme.light, // form 'theme.dart'
       darkTheme: AppTheme.dark, // from 'theme.dart'
       themeMode: ThemeMode.system, // Use the OS current theme mode
-      home: const MainScaffold(),
-    );
-  }
-}
-
-// Main App Scaffold
-// This widget serves as the main scaffold for the app, containing the navigation bar and the body which select which page 
-// To navigate from page to subpage we will instead use Navigation Stack.
-class MainScaffold extends StatefulWidget {
-  
-  const MainScaffold({super.key});
-
-  @override
-  State<MainScaffold> createState() => _MainScaffoldState();
-
-}
-
-class _MainScaffoldState extends State<MainScaffold> {
-  
-  int currentPageIndex = 0;
-
-  final List<Widget> pages = const [
-    HomePage(),
-    ProjectPage(),
-    DeveloperChallengePage(),
-    ResourcePage(),
-    InfoPage(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    
-    final theme = Theme.of(context); // example usage: "theme.colorScheme.primary" (https://docs.flutter.dev/cookbook/design/themes)
-
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: theme.colorScheme.primary,
-        foregroundColor: theme.colorScheme.onPrimary,
-        title: const Text("Developer Club App"),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {}
-          )]
-      ),
-      body: pages[currentPageIndex],
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPageIndex = index;
-          });
-        },
-        selectedIndex: currentPageIndex,
-        indicatorColor: theme.colorScheme.primary,
-        destinations: const <Widget>[
-          NavigationDestination(
-            icon: Icon(Icons.event_outlined),
-            selectedIcon: Icon(Icons.event),
-            label: 'Events',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.ballot_outlined),
-            selectedIcon: Icon(Icons.ballot),
-            label: 'Projects Hub',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.emoji_events_outlined),
-            selectedIcon: Icon(Icons.emoji_events),
-            label: 'Challenge',
-          ),
-           NavigationDestination(
-            icon: Icon(Icons.dynamic_form_outlined),
-            selectedIcon: Icon(Icons.dynamic_form),
-            label: 'Resources',
-          ),
-            NavigationDestination(
-            icon: Icon(Icons.info_outline),
-            selectedIcon: Icon(Icons.info),
-            label: 'Info',
-          ),
-        ],
-    )
+      routerConfig: router,
     );
   }
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "250950861411",
+    "project_id": "devclub-events-cff77",
+    "storage_bucket": "devclub-events-cff77.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250950861411:android:64d94bb8098b43d39eee56",
+        "android_client_info": {
+          "package_name": "com.example.devclub_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgoN0WAJSu7aYF63wqg_o6a7pel8biG6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

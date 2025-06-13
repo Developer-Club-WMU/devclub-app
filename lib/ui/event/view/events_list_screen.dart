@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class CalendarPage extends StatefulWidget {
-  const CalendarPage({super.key});
+class EventsListScreen extends StatefulWidget {
+  const EventsListScreen({super.key});
 
   @override
-  State<CalendarPage> createState() => _CalendarPageState();
+  State<EventsListScreen> createState() => _EventsListScreenState();
 }
 
-class _CalendarPageState extends State<CalendarPage> {
+class _EventsListScreenState extends State<EventsListScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +17,9 @@ class _CalendarPageState extends State<CalendarPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Calendar Page'),
+        title: const Text('Event Lists Page'),
         leading: BackButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => context.go('/'),
         ),
         backgroundColor: theme.colorScheme.primary,
       ),
@@ -30,20 +29,24 @@ class _CalendarPageState extends State<CalendarPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text(
-                'Calendar Page',
+                'Event List Page',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-        
+
               const Text(
-                'This is the calendar page.',
+                'This is the event list page.',
               ),
-        
-              SizedBox(
+
+              const SizedBox(
                 height: 10,
               ),
+
+              ElevatedButton(
+                onPressed: () => context.push('/event_details'),
+                child: const Text('Event Details'))
             ],
           ),
       ),
