@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class Member {
   
+  // TODO: Add all the fields that the business/technical requirements specify
   // Constructor
   const Member ({
     required this.id,

@@ -6,6 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_controller.g.dart';
 
+/// This is Notifier: Read https://riverpod.dev/docs/essentials/side_effects to understand more about riverpod notifier generation
 @riverpod
 class AuthController extends _$AuthController {
 

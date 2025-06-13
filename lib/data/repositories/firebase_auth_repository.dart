@@ -44,4 +44,8 @@ class FirebaseAuthenticationRepository{
   Future<void> signOut() async {
     return _firebaseAuth.signOut();
   }
+
+  // TODO: Add function to signin with Google
+
+  // TODO: Add function to do forget password and one time password
 }
