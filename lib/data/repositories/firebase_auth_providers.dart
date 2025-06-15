@@ -1,5 +1,5 @@
 import 'package:devclub_app/domain/models/member_model.dart';
-import 'package:devclub_app/data/repositories/firebase_auth_repository.dart';
+import 'package:devclub_app/data/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -11,12 +11,12 @@ part 'firebase_auth_providers.g.dart';
 /// Exposes the FirebaseAuth instance as a Riverpod provider
 /// This allows consistent access to FirebaseAuth throughout the app and enables mocking for testing.
 @Riverpod(keepAlive: true)
-FirebaseAuthenticationRepository authRepository(Ref ref){
+FirebaseAuthService authRepository(Ref ref){
   final auth = ref.watch(firebaseAuthProvider);
-  return FirebaseAuthenticationRepository(auth);
+  return FirebaseAuthService(auth);
 }
 
-/// Provides the FirebaseAuthenticationRepository, which contains auth-related logic (sign-in, sign-up, etc.).
+/// Provides the FirebaseAuthService, which contains auth-related logic (sign-in, sign-up, etc.).
 /// This wraps the FirebaseAuth instance and decouples Firebase logic from higher-level components like controllers.
 @Riverpod(keepAlive: true)
 FirebaseAuth firebaseAuth(Ref ref) {

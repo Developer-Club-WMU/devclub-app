@@ -6,15 +6,14 @@ part of 'firebase_auth_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authRepositoryHash() => r'222fa4d2b5f40f5c9e90c205ccb564533e9e3263';
+String _$authRepositoryHash() => r'b9cc85b63a691e2afbd318208aef5ff61df9cf69';
 
 /// Exposes the FirebaseAuth instance as a Riverpod provider
 /// This allows consistent access to FirebaseAuth throughout the app and enables mocking for testing.
 ///
 /// Copied from [authRepository].
 @ProviderFor(authRepository)
-final authRepositoryProvider =
-    Provider<FirebaseAuthenticationRepository>.internal(
+final authRepositoryProvider = Provider<FirebaseAuthService>.internal(
   authRepository,
   name: r'authRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -26,10 +25,10 @@ final authRepositoryProvider =
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef AuthRepositoryRef = ProviderRef<FirebaseAuthenticationRepository>;
+typedef AuthRepositoryRef = ProviderRef<FirebaseAuthService>;
 String _$firebaseAuthHash() => r'cb440927c3ab863427fd4b052a8ccba4c024c863';
 
-/// Provides the FirebaseAuthenticationRepository, which contains auth-related logic (sign-in, sign-up, etc.).
+/// Provides the FirebaseAuthService, which contains auth-related logic (sign-in, sign-up, etc.).
 /// This wraps the FirebaseAuth instance and decouples Firebase logic from higher-level components like controllers.
 ///
 /// Copied from [firebaseAuth].

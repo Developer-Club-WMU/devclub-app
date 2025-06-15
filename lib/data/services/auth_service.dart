@@ -1,9 +1,9 @@
 import 'package:devclub_app/domain/models/member_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class FirebaseAuthenticationRepository{
+class FirebaseAuthService{
   // Constructor
-  FirebaseAuthenticationRepository(this._firebaseAuth);
+  FirebaseAuthService(this._firebaseAuth);
   
   final FirebaseAuth _firebaseAuth;
 
