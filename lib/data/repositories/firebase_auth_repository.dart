@@ -1,4 +1,4 @@
-import 'package:devclub_app/data/models/member_model.dart';
+import 'package:devclub_app/domain/models/member_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthenticationRepository{
@@ -29,7 +29,7 @@ class FirebaseAuthenticationRepository{
     );
   }
 
-  /// This function allows the member to sign out
+  /// This function allows the member to cre
   Future<void> createUserWithEmailAndPassword({
     required String email,
     required String password,

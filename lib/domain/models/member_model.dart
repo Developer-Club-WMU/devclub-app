@@ -6,9 +6,13 @@ class Member {
   // Constructor
   const Member ({
     required this.id,
-    this.email,
+    required this.email,
     this.emailVerified = false,
     this.displayName,
+    this.roleId,
+    this.isActive,
+    this.createdAt, 
+
   });
 
   // Properties
@@ -16,6 +20,9 @@ class Member {
   final String? email;
   final bool emailVerified;
   final String? displayName;
+  final String? roleId;
+  final bool? isActive;
+  final DateTime? createdAt;
 
   // Methods
   /// This function map the Firebase User to our User dart model

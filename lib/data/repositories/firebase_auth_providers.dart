@@ -1,10 +1,10 @@
-import 'package:devclub_app/data/models/member_model.dart';
+import 'package:devclub_app/domain/models/member_model.dart';
 import 'package:devclub_app/data/repositories/firebase_auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'auth_providers.g.dart';
+part 'firebase_auth_providers.g.dart';
 
 // Read this to understand this page more if you're new to riverpod provider generation: https://riverpod.dev/docs/essentials/first_request
 
