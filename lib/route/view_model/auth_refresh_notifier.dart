@@ -1,4 +1,4 @@
-import 'package:devclub_app/data/repositories/firebase_auth_providers.dart';
+import 'package:devclub_app/data/repositories/auth/firebase_auth_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

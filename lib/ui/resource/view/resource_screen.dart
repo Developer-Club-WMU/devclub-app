@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ResourcesScreen extends StatefulWidget {
-  const ResourcesScreen({super.key});
+class ResourceScreen extends StatefulWidget {
+  const ResourceScreen({super.key});
 
   @override
-  State<ResourcesScreen> createState() => _ResourcesScreenState();
+  State<ResourceScreen> createState() => _ResourceScreenState();
 }
 
-class _ResourcesScreenState extends State<ResourcesScreen> {
+class _ResourceScreenState extends State<ResourceScreen> {
   @override
   Widget build(BuildContext context) {
 

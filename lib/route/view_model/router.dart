@@ -1,5 +1,5 @@
 import 'package:devclub_app/route/view_model/auth_refresh_notifier.dart';
-import 'package:devclub_app/data/repositories/firebase_auth_providers.dart';
+import 'package:devclub_app/data/repositories/auth/firebase_auth_providers.dart';
 import 'package:devclub_app/route/view/appview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,7 +13,7 @@ import 'package:devclub_app/ui/event/view/events_list_screen.dart';
 import 'package:devclub_app/ui/event/view/event_details_screen.dart';
 import 'package:devclub_app/ui/project/view/projects_screen.dart';
 import 'package:devclub_app/ui/challenge/view/challenge_screen.dart';
-import 'package:devclub_app/ui/resources/view/resources_screen.dart';
+import 'package:devclub_app/ui/resource/view/resource_screen.dart';
 import 'package:devclub_app/ui/info/view/info_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -118,7 +118,7 @@ GoRouter router(Ref ref) {
               GoRoute(
                 path: AppRoutes.resource.path,
                 name: AppRoutes.resource.name,
-                builder: (context, state) => const ResourcesScreen(),
+                builder: (context, state) => const ResourceScreen(),
               )
 
             ]
