@@ -32,9 +32,9 @@ class AuthController extends _$AuthController {
         await authRepository.signInWithEmailAndPassword(email: email, password: password);
         state = const AuthLoadingState(LoadingStateEnum.success, null);
       
-      } on Exception catch (e) {
+      } on FirebaseAuthException catch (e) {
 
-        state = AuthLoadingState(LoadingStateEnum.error, e);
+        state = AuthLoadingState(LoadingStateEnum.error, Exception(_mapFirebaseError(e)));
 
       }
     }
@@ -78,13 +78,21 @@ class AuthController extends _$AuthController {
         }
     }
     
-    // Helper Method for less verbose error message, security best practice
+    // Helper Method for less verbose error message during both create account and logging in, security best practice
       _mapFirebaseError(FirebaseAuthException e) {
         switch (e.code) {
+
+          // For logging in
           case 'user-not-found':
             return "Invalid username or password";
           case 'wrong-password':
             return "Invalid username or password";
+
+          // For create users
+          case 'email-already-in-use':
+            return "The account already exists for that email.";
+          case 'weak-password':
+            return "The provided password is too weak";
           case 'invalid-email':
             return "Please enter a valid email address.";
           case 'network-request-failed':
