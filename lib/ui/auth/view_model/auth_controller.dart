@@ -24,6 +24,8 @@ class AuthController extends _$AuthController {
     /// This method signs the user in with email and password asynchronously.
     Future<void> signInUserWithEmailAndPassword(String email, String password) async {
       
+      // Add the loading state during log in process to display errors, show users that a process is running in the background,
+      // and prevent multiple log in before current process completes
       state = const AuthLoadingState(LoadingStateEnum.loading, null);
       
       try {
@@ -42,6 +44,8 @@ class AuthController extends _$AuthController {
     /// This method creates a user with email and password asynchronously.
     Future<void> createUserWithEmailAndPassword(String email, String password) async {
         
+        // Add the loading state during sign up process to display errors, show users that a process is running in the background,
+        // and prevent multiple sign up before current process completes
         state = const AuthLoadingState(LoadingStateEnum.loading, null);
         
         try {
@@ -63,6 +67,8 @@ class AuthController extends _$AuthController {
     /// This method signs the user out asynchronously.
     Future<void> signOut() async {
 
+        // Add the loading state during log out process to display errors, show users that a process is running in the background,
+        // and prevent multiple log out before current process completes
         state = const AuthLoadingState(LoadingStateEnum.loading, null);
         final authRepository = ref.watch(authRepositoryProvider);
 
@@ -79,7 +85,7 @@ class AuthController extends _$AuthController {
     }
     
     // Helper Method for less verbose error message during both create account and logging in, security best practice
-      _mapFirebaseError(FirebaseAuthException e) {
+    _mapFirebaseError(FirebaseAuthException e) {
         switch (e.code) {
 
           // For logging in
