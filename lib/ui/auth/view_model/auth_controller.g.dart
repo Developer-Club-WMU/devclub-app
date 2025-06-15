@@ -8,7 +8,9 @@ part of 'auth_controller.dart';
 
 String _$authControllerHash() => r'6358b7bfc5b877cecd36230610966a65f8330502';
 
-/// See also [AuthController].
+/// This is Notifier: Read https://riverpod.dev/docs/essentials/side_effects to understand more about riverpod notifier generation
+///
+/// Copied from [AuthController].
 @ProviderFor(AuthController)
 final authControllerProvider =
     AutoDisposeNotifierProvider<AuthController, AuthLoadingState>.internal(
