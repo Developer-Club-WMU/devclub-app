@@ -12,7 +12,12 @@
           "package_name": "com.example.devclub_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "250950861411-jdu3q1tqgnikauql9ah6jp0scgu8btpi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCgoN0WAJSu7aYF63wqg_o6a7pel8biG6U"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250950861411-jdu3q1tqgnikauql9ah6jp0scgu8btpi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "250950861411-b0fkrk2i4mqbr7o14ggm1qpf37vljrg4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.devclubApp"
+              }
+            }
+          ]
         }
       }
     }
