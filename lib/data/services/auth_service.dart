@@ -1,5 +1,6 @@
 import 'package:devclub_app/domain/models/member_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthService{
   // Constructor
@@ -45,7 +46,25 @@ class FirebaseAuthService{
     return _firebaseAuth.signOut();
   }
 
-  // TODO: Add function to sign in with Google
+  /// This functionallows the user to sign in with their google account, 
+  Future<UserCredential> signInWithGoogle() async {
+  
+  // This opens a Google sign-in prompt,
+  // if the user chooses an account or logs in, googleUser holds their Google account, if the user cancels, googleUser will be null
+  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+  // Uses the googleUser from earlier line tofetch the accessToken and idToken needed in the line later
+  final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+  // This creates a Firebase credential from the tokens we got from Google.
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth?.accessToken,
+    idToken: googleAuth?.idToken,
+  );
+
+  // This tells firebase that there's a valid Google login, please log in.
+  return await _firebaseAuth.signInWithCredential(credential);
+}
 
   // TODO: Add function to sign in with Magic Link
   // Read  to understand more: https://firebase.google.com/docs/auth/flutter/email-link-auth
