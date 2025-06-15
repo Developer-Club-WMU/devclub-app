@@ -45,7 +45,30 @@ class FirebaseAuthService{
     return _firebaseAuth.signOut();
   }
 
-  // TODO: Add function to signin with Google
+  // TODO: Add function to sign in with Google
 
-  // TODO: Add function to do forget password and one time password
+  // TODO: Add function to sign in with Magic Link
+  // Read  to understand more: https://firebase.google.com/docs/auth/flutter/email-link-auth
+  final ActionCodeSettings _acs = ActionCodeSettings(
+    url: 'http://localhost:50876/completeSignIn', //! TODO: Change this to actual domain when deploy, currently set to localhost for testing
+    handleCodeInApp: true,
+    iOSBundleId: 'com.example.devclub', // ! TODO: Change this when deploy to Ios
+    androidPackageName: 'com.example.devclub', // ! TODO: Change this when deploy to Android
+  );
+
+  /// This function allows the member to sign in with email and password
+  Future<void> sendSignInLinkToEmail({
+    required String email,
+  }) {
+    return _firebaseAuth.sendSignInLinkToEmail(
+        email: email,
+        actionCodeSettings: _acs,
+    )
+
+    // TODO: Move this to ViewModel for correct architecture and use try catch for best practice
+    .catchError((onError) => print('Error sending email verification $onError'))
+    .then((value) => print('Successfully sent email verification'));
+  }
+  
 }
+ 
