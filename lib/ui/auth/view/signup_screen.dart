@@ -36,124 +36,137 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-
-              // TODO: Add custom logo
-
-              // Welcome Text
-              Text(
-                'Welcome to Developer Club',
-                style: TextStyle(
-
-                  // TODO: Replace with your custom font
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 26,
-                  color: theme.colorScheme.primary,
-                ),
-              ),
-
-              SizedBox(height: 6),
-
-              // Login Request
-              Text(
-                'Create an account to continue',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.normal,
-                  fontSize: 18,
-                  color: theme.colorScheme.onSurface,
-                ),
-              ),
-
-              SizedBox(height: 26),
-
-              TextField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                  labelText: 'Email Address',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-
-              SizedBox(height: 16),
-
-              TextField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  border: OutlineInputBorder(),
-                ),
-                obscureText: true, // Hide password input, best practice for security
-              ),
-
-              SizedBox(height: 16),
-
-              TextField(
-                controller: _confirmPasswordController,
-                decoration: InputDecoration(
-                  labelText: 'Confirm Password',
-                  border: OutlineInputBorder(),
-                ),
-                obscureText: true,
-              ),
-
-              SizedBox(height: 26),
-
-              // Sign Up Button
-              SizedBox(
-                width: double.infinity,
-                height: 49,
-                child: ElevatedButton(
-                  
-                  onPressed: _signUp,
-
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: theme.colorScheme.primary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-
-                  child: Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-
-                ),
-              ),
-              
-              SizedBox(height: 26),
-
-
-              Center(
-                child: GestureDetector(
-                  onTap: () {
-                    context.goNamed(AppRoutes.signUp.name);
-                  },
-                  child: Text(
-                    "Already Have an Account? Log In",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 14,
-                      color: Colors.grey,
-                    ),
+      body: Container(
+         decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromARGB(255, 47, 41, 39),
+              Color.fromARGB(255, 71, 60, 56),
+              Color.fromARGB(255, 79, 75, 93),
+            ]
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+        
+                // TODO: Add custom logo
+        
+                // Welcome Text
+                Text(
+                  'Welcome to Developer Club',
+                  style: TextStyle(
+        
+                    // TODO: Replace with your custom font
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 26,
+                    color: theme.colorScheme.onPrimary,
                   ),
                 ),
-              )
-
-            ],
+        
+                SizedBox(height: 12),
+        
+                // Login Request
+                Text(
+                  'Create an account to continue',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.normal,
+                    fontSize: 16,
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+        
+                SizedBox(height: 12),
+        
+                TextField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    labelText: 'Email Address',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+        
+                SizedBox(height: 8),
+        
+                TextField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    border: OutlineInputBorder(),
+                  ),
+                  obscureText: true, // Hide password input, best practice for security
+                ),
+        
+                SizedBox(height: 8),
+        
+                TextField(
+                  controller: _confirmPasswordController,
+                  decoration: InputDecoration(
+                    labelText: 'Confirm Password',
+                    border: OutlineInputBorder(),
+                  ),
+                  obscureText: true,
+                ),
+        
+                SizedBox(height: 26),
+        
+                // Sign Up Button
+                SizedBox(
+                  width: double.infinity,
+                  height: 49,
+                  child: ElevatedButton(
+                    
+                    onPressed: _signUp,
+        
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.colorScheme.primary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+        
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+        
+                  ),
+                ),
+                
+                SizedBox(height: 26),
+        
+        
+                Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      context.goNamed(AppRoutes.logIn.name);
+                    },
+                    child: Text(
+                      "Already Have an Account? Log In",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                )
+        
+              ],
+            ),
           ),
         ),
       ),
